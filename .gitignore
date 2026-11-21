@@ -1,5 +1,4 @@
 .DS_Store
-.gitignore
 node_modules
 public
 prof
@@ -12,3 +11,8 @@ replit.nix
 .quartz/
 quartz/cli/tui/dist/
 .turbo/
+
+# The content/notes symlink points to your local iCloud vault.
+# It is a local build convenience only — not tracked in git.
+# Your actual notes are committed directly into content/ by the Obsidian Git plugin.
+content/notes

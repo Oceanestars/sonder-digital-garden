@@ -1,3 +1,235 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// =============================================================================
+// FOUR-SEASON THEME
+// Each season defines its own CSS custom property overrides on html[data-season]
+// Winter is the default (matches the base colors in quartz.config.yaml).
+// The season-toggle script sets data-season on <html> at page load.
+// =============================================================================
+
+// --- WINTER (default, blue/white/ice) ----------------------------------------
+html[data-season="winter"],
+html:not([data-season]) {
+  &:not([saved-theme="dark"]) {
+    --light: #f0f4f8;
+    --lightgray: #d6e4f0;
+    --gray: #8aafc7;
+    --darkgray: #2c4a6e;
+    --dark: #1a2f45;
+    --secondary: #3a7bd5;
+    --tertiary: #6fa8dc;
+    --highlight: rgba(58, 123, 213, 0.1);
+    --textHighlight: #cce3f488;
+    --season-accent: #3a7bd5;
+  }
+
+  &[saved-theme="dark"] {
+    --light: #0d1b2a;
+    --lightgray: #1b2d42;
+    --gray: #3d6080;
+    --darkgray: #b0cce0;
+    --dark: #e8f4fd;
+    --secondary: #6fa8dc;
+    --tertiary: #3a7bd5;
+    --highlight: rgba(111, 168, 220, 0.15);
+    --textHighlight: #1e3a5f88;
+    --season-accent: #6fa8dc;
+  }
+}
+
+// --- SPRING (soft greens, cherry blossom pinks) ------------------------------
+html[data-season="spring"] {
+  &:not([saved-theme="dark"]) {
+    --light: #f7faf4;
+    --lightgray: #dff0d8;
+    --gray: #96c08a;
+    --darkgray: #2d5a27;
+    --dark: #1a3d16;
+    --secondary: #5aab4a;
+    --tertiary: #f0a0b8;
+    --highlight: rgba(90, 171, 74, 0.1);
+    --textHighlight: #d4f7c888;
+    --season-accent: #5aab4a;
+  }
+
+  &[saved-theme="dark"] {
+    --light: #0f1f0d;
+    --lightgray: #1b3318;
+    --gray: #3d6b36;
+    --darkgray: #b8d9b2;
+    --dark: #e8f5e4;
+    --secondary: #7dc96e;
+    --tertiary: #f0a0b8;
+    --highlight: rgba(125, 201, 110, 0.15);
+    --textHighlight: #1a3d1688;
+    --season-accent: #7dc96e;
+  }
+}
+
+// --- SUMMER (warm yellows, coral, sunshine) ----------------------------------
+html[data-season="summer"] {
+  &:not([saved-theme="dark"]) {
+    --light: #fffdf0;
+    --lightgray: #fef3c7;
+    --gray: #f0b429;
+    --darkgray: #78350f;
+    --dark: #451a03;
+    --secondary: #f59e0b;
+    --tertiary: #fb7185;
+    --highlight: rgba(245, 158, 11, 0.1);
+    --textHighlight: #fef08a88;
+    --season-accent: #f59e0b;
+  }
+
+  &[saved-theme="dark"] {
+    --light: #1c1200;
+    --lightgray: #2e1f00;
+    --gray: #7c5a0a;
+    --darkgray: #fcd34d;
+    --dark: #fef9c3;
+    --secondary: #fbbf24;
+    --tertiary: #fb7185;
+    --highlight: rgba(251, 191, 36, 0.15);
+    --textHighlight: #451a0388;
+    --season-accent: #fbbf24;
+  }
+}
+
+// --- FALL/AUTUMN (oranges, burgundy, deep reds, warm browns) -----------------
+html[data-season="fall"] {
+  &:not([saved-theme="dark"]) {
+    --light: #fdf6f0;
+    --lightgray: #fce4d0;
+    --gray: #c4733a;
+    --darkgray: #5c2b0a;
+    --dark: #3b1200;
+    --secondary: #c2410c;
+    --tertiary: #9b2335;
+    --highlight: rgba(194, 65, 12, 0.1);
+    --textHighlight: #fecba188;
+    --season-accent: #c2410c;
+  }
+
+  &[saved-theme="dark"] {
+    --light: #1a0a00;
+    --lightgray: #2e1500;
+    --gray: #7a3b10;
+    --darkgray: #f4b380;
+    --dark: #fde8d0;
+    --secondary: #f97316;
+    --tertiary: #9b2335;
+    --highlight: rgba(249, 115, 22, 0.15);
+    --textHighlight: #3b120088;
+    --season-accent: #f97316;
+  }
+}
+
+// =============================================================================
+// SEASON TOGGLE BUTTON
+// Floats in the toolbar area alongside other nav items
+// =============================================================================
+
+.season-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  color: var(--darkgray);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  user-select: none;
+
+  &:hover {
+    background-color: var(--highlight);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  .season-label {
+    font-size: 0.7rem;
+    font-family: var(--bodyFont);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+
+    @media #{$mobile} {
+      display: none;
+    }
+  }
+}
+
+// =============================================================================
+// GARDEN LANDING PAGE STYLES
+// Extra polish for the index page
+// =============================================================================
+
+.garden-hero {
+  margin-bottom: 2rem;
+
+  .garden-tagline {
+    font-size: 1.1rem;
+    color: var(--gray);
+    font-style: italic;
+    margin-top: -0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .garden-season-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--highlight);
+    border: 1px solid var(--lightgray);
+    border-radius: 20px;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    font-family: var(--bodyFont);
+  }
+}
+
+// =============================================================================
+// GENERAL POLISH
+// =============================================================================
+
+// Smooth season transitions
+html {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+body {
+  transition: background-color 0.4s ease;
+}
+
+// Make internal links use season accent color
+article a {
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--tertiary);
+  }
+}
+
+// Nicer blockquotes as garden "asides"
+blockquote {
+  border-left: 3px solid var(--secondary);
+  background: var(--highlight);
+  border-radius: 0 6px 6px 0;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+
+  p {
+    margin: 0;
+  }
+}
